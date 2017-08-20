@@ -3,27 +3,45 @@
    <head>
      <meta charset="UFT-8">
 	 <title>Pay</title>
-	 
-	 <link rel="stylesheet" href="css/app.css">
     </head>
 	<body>
-	   <div class="payment-container">
-	     <h2 class="header">Pay for copy</h2>
-		 
-		 <form action="checkout.php" method="post" autocomplete="off">
-		   <label for="item">
-		     Product
-			  <input type="text" name="product">
-		   </label>
-		   <label for="amount">
-		     Price
-			 <input type="text" name="price">
-		   </label>
-		   
-		   <input type="submit" value="Pay">
-		 </form>
-		 
-		 <p>You will be taken to the download when u are finsh</p>
-	   </div>
+	<div id="paypal-button"></div>
+
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+<script>
+    paypal.Button.render({
+
+        env: 'production', // Or 'sandbox'
+
+        client: {
+            sandbox:    'xxxxxxxxx',
+            production: 'xxxxxxxxx'
+        },
+
+        commit: true, // Show a 'Pay Now' button
+
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: '1.00', currency: 'USD' }
+                        }
+                    ]
+                }
+            });
+        },
+
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function(payment) {
+
+                // The payment is complete!
+                // You can now show a confirmation message to the customer
+            });
+        }
+
+    }, '#paypal-button');
+</script>
 	  </body>
 	 </html>

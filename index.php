@@ -8,13 +8,13 @@
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 
   <!-- Identify your business so that you can collect the payments. -->
-  <input type="hidden" name="business" value="herschelgomez@xyzzyu.com">
+  <input type="hidden" name="business" value="andenklasson@gmail.com">
 
   <!-- Specify a Buy Now button. -->
   <input type="hidden" name="cmd" value="_xclick">
 
   <!-- Specify details about the item that buyers will purchase. -->
-  <input type="hidden" name="item_name" value="Hot Sauce-12oz. Bottle">
+  <input type="hidden" name="item_name" value="Source Code">
   <input type="hidden" name="amount" value="20">
   <input type="hidden" name="currency_code" value="USD">
 

@@ -5,43 +5,26 @@
 	 <title>Pay</title>
     </head>
 	<body>
-	<div id="paypal-button"></div>
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+  <!-- Identify your business so that you can collect the payments. -->
+  <input type="hidden" name="business" value="herschelgomez@xyzzyu.com">
 
-<script>
-    paypal.Button.render({
+  <!-- Specify a Buy Now button. -->
+  <input type="hidden" name="cmd" value="_xclick">
 
-        env: 'production', // Or 'sandbox'
+  <!-- Specify details about the item that buyers will purchase. -->
+  <input type="hidden" name="item_name" value="Hot Sauce-12oz. Bottle">
+  <input type="hidden" name="amount" value="20">
+  <input type="hidden" name="currency_code" value="USD">
 
-        client: {
-            sandbox:    'xxxxxxxxx',
-            production: 'xxxxxxxxx'
-        },
+  <!-- Display the payment button. -->
+  <input type="image" name="submit" border="0"
+  src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_107x26.png"
+  alt="Buy Now">
+  <img alt="" border="0" width="1" height="1"
+  src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
 
-        commit: true, // Show a 'Pay Now' button
-
-        payment: function(data, actions) {
-            return actions.payment.create({
-                payment: {
-                    transactions: [
-                        {
-                            amount: { total: '1.00', currency: 'USD' }
-                        }
-                    ]
-                }
-            });
-        },
-
-        onAuthorize: function(data, actions) {
-            return actions.payment.execute().then(function(payment) {
-
-                // The payment is complete!
-                // You can now show a confirmation message to the customer
-            });
-        }
-
-    }, '#paypal-button');
-</script>
+</form>
 	  </body>
 	 </html>
